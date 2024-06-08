@@ -32,7 +32,7 @@ body {
   
   input[type="submit"], button {
     background-color: #4CAF50;
-    height: 50%;
+   
     color: white;
     border: none;
     cursor: pointer;
