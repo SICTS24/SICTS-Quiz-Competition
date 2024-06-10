@@ -5,8 +5,48 @@ document.getElementById('schoolForm').addEventListener('submit', function(event)
   });
   
   document.getElementById('apiButton').addEventListener('click', function() {
+    document.getElementById('apiButton').style.backgroundColor = 'red';
+    var text = document.getElementById('response');
+    text.innerHTML = 'Your school pressed the button';
+
+    var intId = setInterval(function() {
+      fetch('https://x9820t27-3000.asse.devtunnels.ms/data')
+      .then(response => response.json())
+      .then(data => {
+        let results = document.getElementById('results');
+        for (let key in data) {
+          if (data.hasOwnProperty(key)) {  // This check is necessary to filter out properties from the prototype
+            // Create a new paragraph element
+            let div = document.createElement('div');
+            
+            // Set the text of the paragraph to the key-value pair
+            div.innerHTML = `Key: ${key}, Value: ${data[key]}`;
+            
+            // Add the paragraph to the div
+            results.appendChild(div);
+          } 
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    })
+
+
+    setTimeout(function() {
+      document.getElementById('apiButton').style.backgroundColor = 'green';
+    }, 8000);  // Change the color back after 5000 milliseconds (5 seconds)
+
+    setTimeout(function() {
+      text.innerHTML = '';
+    }, 10000);
+
     const schoolName = document.getElementById('schoolName').value;
-    fetch('https://d83h75r1-3000.asse.devtunnels.ms/', {
+    setTimeout(function() {
+      document.getElementById('apiButton').style.backgroundColor = 'green';
+    }, 8000);
+    
+    fetch('https://x9820t27-3000.asse.devtunnels.ms/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -20,3 +60,5 @@ document.getElementById('schoolForm').addEventListener('submit', function(event)
       console.error('Error:', error);
     });
   });
+
+  
