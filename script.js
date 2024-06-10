@@ -20,7 +20,7 @@ document.getElementById('schoolForm').addEventListener('submit', function(event)
             let div = document.createElement('div');
             
             // Set the text of the paragraph to the key-value pair
-            div.innerHTML = `Key: ${key}, Value: ${data[key]}`;
+            div.innerHTML = `School: ${key}, Time ${data[key]}`;
             
             // Add the paragraph to the div
             results.appendChild(div);
