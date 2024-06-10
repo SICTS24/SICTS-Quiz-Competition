@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz submission</title>
+  <title>API Request Page</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,9 +12,13 @@
     <input type="text" id="schoolName" name="schoolName"><br>
     <input type="submit" value="Submit">
   </form>
+ <div style="display: block;" >
 
-  <button id="apiButton" style="display: none;" type="button">Submit</button>
+  <div id="response" style="text-align: center; font-size: larger;"></div>
+  <button id="apiButton" style="display: none; width: 1000px; height: 100px; line-height: 75px; font-size: 50px;" type="button">Submit</button>
+  <div id="results"></div>
 
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
