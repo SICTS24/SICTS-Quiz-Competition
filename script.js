@@ -9,7 +9,7 @@ document.getElementById('schoolForm').addEventListener('submit', function(event)
     var text = document.getElementById('response');
     text.innerHTML = 'Your school pressed the button';
 
-    var intId = setInterval(function() {
+    function fetchData() {
       fetch('https://x9820t27-3000.asse.devtunnels.ms/data')
       .then(response => response.json())
       .then(data => {
@@ -30,7 +30,9 @@ document.getElementById('schoolForm').addEventListener('submit', function(event)
       .catch((error) => {
         console.error('Error:', error);
       });
-    })
+    };
+
+    fetchData();   
 
 
     setTimeout(function() {
