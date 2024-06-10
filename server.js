@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 
 // Middleware to parse JSON bodies
+let data = {};
+
 app.use(express.json());
 
 // Middleware for CORS
@@ -18,12 +20,16 @@ const getCurrentTime = () => {
   const minutes = now.getMinutes().toString().padStart(2, '0');
   const seconds = now.getSeconds().toString().padStart(2, '0');
   const milliseconds = now.getMilliseconds().toString().padStart(3, '0');
-  return `${hours}:${minutes}:${seconds}.${milliseconds}`;
+  return `${hours}h:${minutes}m:${seconds}s:${milliseconds}ms`;
 };
 
 app.post('/', (req, res) => {
     const requestTime = getCurrentTime();
     let schoolName = req.body.school;
+    if (!schoolName in data) {
+      Object.assign(data, { schoolName: requestTime });
+    }
+    
     console.log(schoolName, requestTime);
     res.json({ schoolName, requestTime });
 });
@@ -31,6 +37,10 @@ app.post('/', (req, res) => {
 app.get("/", (req, res) => {
   console.log("cat");
   res.send("Hello World");
+});
+
+app.get("/data", (req, res) => {
+ res.send(data);
 });
 
 const PORT = process.env.PORT || 3000;
