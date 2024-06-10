@@ -32,7 +32,7 @@ document.getElementById('schoolForm').addEventListener('submit', function(event)
       });
     };
 
-    //fetchData();   
+    fetchData();   
 
 
     setTimeout(function() {
