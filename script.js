@@ -12,7 +12,7 @@ document.getElementById('schoolForm').addEventListener('submit', function(event)
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ school: schoolName }),
-      mode: 'no-cors',
+      //mode: 'no-cors',
     })
     .then(response => response.json())
     .then(data => console.log(data))
