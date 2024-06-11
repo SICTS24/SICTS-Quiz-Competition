@@ -1,10 +1,19 @@
 const express = require('express');
 const app = express();
+import {GlobalKeyboardListener} from "node-global-key-listener";
+const v = new GlobalKeyboardListener();
 
 // Middleware to parse JSON bodies
 let data = {};
 
 app.use(express.json());
+
+v.addListener(function (e, down) {
+  if (e.state == "DOWN" && e.name == "A") {
+      data = {};
+      return true;
+  }
+});
 
 // Middleware for CORS
 app.use((req, res, next) => {
@@ -12,6 +21,7 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
 
 // Utility function to get the current time with hour, minute, second, and millisecond
 const getCurrentTime = () => {
