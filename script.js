@@ -16,34 +16,26 @@ document.getElementById('schoolForm').addEventListener('submit', function(event)
 
     function fetchData() {
       fetch('https://x9820t27-3000.asse.devtunnels.ms/data')
-      .then(response => response.json())
-      .then(data => {
-        let results = document.getElementById('results');
-        for (let key in data) {
-          if (data.hasOwnProperty(key)) {  // This check is necessary to filter out properties from the prototype
-            
-            let el = document.getElementById('exist');
-            if (el == null) {
-            let div = document.createElement('div');
-            div.id = 'exist';
-            // Set the text of the paragraph to the key-value pair
-            div.innerHTML = `School: ${key}, Time ${data[key]}`;
-            
-            // Add the paragraph to the div
-            results.appendChild(div);
-            }else{
-              for(let key in data){
-                  if(data.hasOwnProperty(key)){
-                      el.innerHTML = `School: ${key}, Time ${data[key]}`;
+        .then(response => response.json())
+        .then(data => {
+          let results = document.getElementById('results');
+          let el = document.getElementById('exist');
+          if (!el) {
+            el = document.createElement('div');
+            el.id = 'exist';
+            results.appendChild(el);
+          }
+          for (let key in data) {
+            if (data.hasOwnProperty(key)) {
+              el.innerHTML = `School: ${key}, Time: ${data[key]}`;
             }
-          } 
-        }
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-    };
-
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
+  
     if (!intervalId) {
       intervalId = setInterval(fetchData, 500);
     };
