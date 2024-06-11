@@ -1,19 +1,12 @@
 const express = require('express');
+const readline = require('readline');
+
 const app = express();
-import {GlobalKeyboardListener} from "node-global-key-listener";
-const v = new GlobalKeyboardListener();
 
 // Middleware to parse JSON bodies
 let data = {};
 
 app.use(express.json());
-
-v.addListener(function (e, down) {
-  if (e.state == "DOWN" && e.name == "A") {
-      data = {};
-      return true;
-  }
-});
 
 // Middleware for CORS
 app.use((req, res, next) => {
@@ -21,7 +14,6 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-
 
 // Utility function to get the current time with hour, minute, second, and millisecond
 const getCurrentTime = () => {
@@ -34,14 +26,11 @@ const getCurrentTime = () => {
 };
 
 app.post('/', (req, res) => {
-    const requestTime = getCurrentTime();
-    let schoolName = req.body.school;
-    if (!schoolName in data) {
-      Object.assign(data, { schoolName: requestTime });
-    }
-    
-    console.log(schoolName, requestTime);
-    res.json({ schoolName, requestTime });
+  const requestTime = getCurrentTime();
+  let schoolName = req.body.school;
+  Object.assign(data, { [schoolName]: requestTime });
+  console.log(schoolName, requestTime);
+  res.json({ schoolName, requestTime });
 });
 
 app.get("/", (req, res) => {
@@ -50,10 +39,24 @@ app.get("/", (req, res) => {
 });
 
 app.get("/data", (req, res) => {
- res.send(data);
+  res.send(data);
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+});
+
+// Setup readline interface for capturing key presses
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+// Listen for 'a' key press to clear data
+rl.on('line', (input) => {
+  if (input === 'a') {
+    data = {};
+    console.log('Data cleared.');
+  }
 });
