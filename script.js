@@ -53,10 +53,10 @@ document.getElementById('schoolForm').addEventListener('submit', function(event)
       document.getElementById('apiButton').style.backgroundColor = 'green';
     }, 8000);  // Change the color back after 5000 milliseconds (5 seconds)
 
-    document.getElementById('apiButton').style.display = 'none';
+    document.getElementById('apiButton').disabled = true;
 
     setTimeout(function() {
-      document.getElementById('schoolForm').style.display = 'block';
+      document.getElementById('schoolForm').disabled = false;
     }, 5000);
 
     setTimeout(function() {
