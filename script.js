@@ -32,7 +32,9 @@ document.getElementById('schoolForm').addEventListener('submit', function(event)
             // Add the paragraph to the div
             results.appendChild(div);
             }else{
-              el.innerHTML = `School: ${key}, Time ${data[key]}`;
+              for(let key in data){
+                  if(data.hasOwnProperty(key)){
+                      el.innerHTML = `School: ${key}, Time ${data[key]}`;
             }
           } 
         }
