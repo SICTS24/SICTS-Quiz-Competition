@@ -24,7 +24,7 @@ document.getElementById('apiButton').addEventListener('click', function() {
         }
         for (let key in data) {
           if (data.hasOwnProperty(key)) {
-            el.innerHTML = `School: ${key}, Time: ${data[key]}`;
+            el.innerHTML = el.innerHTML + `\nSchool: ${key}, Time: ${data[key]}`;
           }
         }
       })
