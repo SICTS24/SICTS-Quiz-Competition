@@ -22,12 +22,15 @@ document.getElementById('apiButton').addEventListener('click', function() {
           el.id = 'exist';
           results.appendChild(el);
         }
+        let t1 = '';
         for (let key in data) {
           if (data.hasOwnProperty(key)) {
-            el.innerHTML = el.innerHTML + `\nSchool: ${key}, Time: ${data[key]}`;
-            //problem
+            //el.innerHTML = el.innerHTML + `\nSchool: ${key}, Time: ${data[key]}`;
+            let t2 = t1.concat(`School: ${key}, Time: ${data[key]}`,"\n");
+            t1 = t2;
           }
         }
+        el.innerHTML = t1;
       })
       .catch((error) => {
         console.error('Error:', error);
