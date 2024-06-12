@@ -2,6 +2,7 @@ let intervalId = 0;
 
 document.getElementById('schoolForm').addEventListener('submit', function(event) {
   event.preventDefault();
+  document.getElementById('contDiv').style.display = 'block';
   document.getElementById('schoolForm').style.display = 'none';
   document.getElementById('apiButton').style.display = 'block';
 });
@@ -48,8 +49,8 @@ document.getElementById('apiButton').addEventListener('click', function() {
   document.getElementById('apiButton').disabled = true;
 
   setTimeout(function() {
-    document.getElementById('schoolForm').disabled = false;
-  }, 5000);
+    document.getElementById('apiButton').disabled = false;
+  }, 10000);
 
   setTimeout(function() {
     text.innerHTML = '';
