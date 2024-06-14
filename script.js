@@ -58,7 +58,7 @@ document.getElementById('apiButton').addEventListener('click', function() {
 
   const schoolName = document.getElementById('schoolName').value;
 
-  fetch('https://x9820t27-3000.asse.devtunnels.ms/', {
+  fetch('https://d83h75r1-3000.asse.devtunnels.ms/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
