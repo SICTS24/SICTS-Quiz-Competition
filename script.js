@@ -13,7 +13,7 @@ document.getElementById('apiButton').addEventListener('click', function() {
   text.innerHTML = 'Your school pressed the button';
 
   function fetchData() {
-    fetch('https://x9820t27-3000.asse.devtunnels.ms/data')
+    fetch('https://d83h75r1-3000.asse.devtunnels.ms/data')
       .then(response => response.json())
       .then(data => {
         let results = document.getElementById('results');
