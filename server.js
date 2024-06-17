@@ -42,7 +42,14 @@ app.get("/data", (req, res) => {
   res.send(data);
 });
 
-const PORT = process.env.PORT || 3000;
+app.get("/delete", (req, res) =>{
+  data = {};
+  console.log('Data cleared.');
+  res.send("data cleared");
+});
+
+//const PORT = process.env.PORT || 4000;
+const PORT = 4000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
@@ -60,3 +67,5 @@ rl.on('line', (input) => {
     console.log('Data cleared.');
   }
 });
+
+export default app
